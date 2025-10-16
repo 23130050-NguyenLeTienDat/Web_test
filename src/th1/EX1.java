@@ -38,18 +38,35 @@ public class EX1 {
 	 	System.out.println("Da xoa: " + path);
 		return file.delete();
 }
-	
-	public static void main(String[] args) {
+	public static void findByExts(String path, String... exts) {
+		File file = new File(path);;
+		if(!file.exists()) System.out.println("file khong ton tai");
+		if(file.isFile()) {
+			String name = file.getName().toLowerCase();
+			for(String ext : exts) {
+				if(name.endsWith(ext.toLowerCase())) {
+					System.out.println("File is found: " + file.getAbsolutePath());
+					break;
+				}
+			}
+		}else if(file.isDirectory()) {
+			for(File f : file.listFiles()) {
+				findByExts(f.getAbsolutePath(), exts);
+			}
+		}
+	}
+		public static void main(String[] args) {
 		//tao cac file va thu muc
-		new File("D:\\LTM\\tét").mkdirs();
+		new File("D:\\LTM\\test").mkdirs();
 		try {
-			new File("D:\\LTM\\tét\\hehe.txt").createNewFile();
-			new File("D:\\LTM\\tét\\heh1231").mkdir();
-			new File("D:\\LTM\\tét\\heh1231\\aa.txt").createNewFile();
+			new File("D:\\LTM\\test\\hehe.txt").createNewFile();
+			new File("D:\\LTM\\test\\heh1231").mkdir();
+			new File("D:\\LTM\\test\\heh1231\\aa.txt").createNewFile();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		String path = "D:\\LTM\\tét";
+		String path = "D:\\LTM\\test";
+
 		/*
 		long start = System.nanoTime();
 
@@ -57,15 +74,19 @@ public class EX1 {
 		System.out.println(kqua);
 		long end = System.nanoTime();
 		long result = end - start ;
-		System.out.println(result + "ns"); */
-		
+		System.out.println(result + "ns"); 
+		*/
 
 		long start2 = System.nanoTime();
-		boolean kqua2 = deleteFile2(path);
-		System.out.println(kqua2);
+		//boolean kqua2 = deleteFile2(path);
+		//System.out.println(kqua2);
+		findByExts(path, ".txt");
 		long end2 = System.nanoTime();
 		long result2 = end2 - start2 ;
 		System.out.println(result2 + "ns");
+		
+		
 
 	}
 }
+
