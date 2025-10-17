@@ -1,0 +1,64 @@
+body{
+    margin: 0;
+    font-family:  Arial solid  ;
+}
+a{
+
+}
+p{
+
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+main{
+    width: 1200px;
+    min-height: 800px;
+    background: aqua;
+    margin: auto;
+}
+main .menu{
+    float: left;
+    background: white;
+    overflow: auto;
+    border-bottom: 2px solid brown;
+    border-left: 5px solid brown;
+    width: 1200px;
+}
+main .menu .item{
+    float: left;
+    width: fit-content;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+main .menu .item:hover{
+    background: brown;
+    color: white;
+    cursor: pointer;
+}
+main .menu  .pmenu{
+    display: none;
+}
+main .menu .item:hover .pmenu{
+    display: block;
+    position: absolute;
+    background: white;
+    margin-top: 15px;
+    margin-left: -15px;
+}
+main .menu   .pitem{
+    color: black;
+    border-top: 2px solid brown;
+    padding: 12px;
+    border-bottom: 2px solid darkgrey;
+}
+main .menu .pitem:hover{
+    background: brown;
+    color: white;
+    cursor: pointer;
+}
