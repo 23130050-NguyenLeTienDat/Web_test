@@ -595,4 +595,20 @@ begin
 end;
 DECLARE @Tong MONEY;
 EXEC sp_dt_qui @QUY = 2, @NAM = 2010, @DOANH_THU = @Tong OUTPUT;
+
 PRINT N'Tổng doanh thu quý 2 năm 2010 là: ' + CAST(@Tong AS NVARCHAR(20));
+ --cau 5 
+ create procedure sp_tong_dt
+	@YEAR int,
+	@DOANH_THU money output
+as begin 
+	set NOCOUNT on
+	select @DOANH_THU = sum( ct.SLKHMua * ct.DGBan)
+	from HOADON hd join CT_HOADON ct on hd.SoHD = ct.SoHD
+	where @YEAR = YEAR(hd.NgaylapHD)
+end;
+declare @Tong MONEY;
+exec sp_tong_dt @YEAR = 2010, @DOANH_THU = @Tong output;
+print N' Tong doanh thu cua nam 2010 la: ' + cast(@Tong as nvarchar(20));
+exec sp_tong_dt @YEAR = 2011, @DOANH_THU = @Tong output;
+print N' Tong doanh thu cua nam 2011 la: ' + cast(@Tong as nvarchar(20));
