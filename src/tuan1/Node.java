@@ -23,7 +23,6 @@ public class Node {
     }
 
     /**
-     * FIX: Sửa lại hoàn toàn logic kiểm tra tính hợp lệ.
      * Chỉ cần kiểm tra quân hậu cuối cùng với tất cả các quân hậu đã đặt trước đó.
      */
     public boolean isValid(List<Integer> state) {
@@ -61,7 +60,7 @@ public class Node {
     public List<Node> getNeighbours() {
         // Nếu đã đặt đủ N quân hậu, không có trạng thái kế tiếp
         if (state.size() == n) {
-            return new ArrayList<>(); // FIX: Trả về list rỗng thay vì null để an toàn hơn
+            return new ArrayList<>(); //Trả về list rỗng
         }
 
         List<Node> neighbours = new ArrayList<>();
@@ -74,4 +73,5 @@ public class Node {
         }
         return neighbours;
     }
+
 }
